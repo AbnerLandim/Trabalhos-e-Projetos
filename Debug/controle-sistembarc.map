@@ -1,0 +1,222 @@
+******************************************************************************
+                  TI ARM Linker PC v18.1.1                     
+******************************************************************************
+>> Linked Thu Jul  5 21:45:19 2018
+
+OUTPUT FILE NAME:   <controle-sistembarc.out>
+ENTRY POINT SYMBOL: "_c_int00_noargs"  address: 00000aed
+
+
+MEMORY CONFIGURATION
+
+         name            origin    length      used     unused   attr    fill
+----------------------  --------  ---------  --------  --------  ----  --------
+  FLASH                 00000000   00040000  00000b88  0003f478  R  X
+  SRAM                  20000000   00008000  00000218  00007de8  RW X
+
+
+SEGMENT ALLOCATION MAP
+
+run origin  load origin   length   init length attrs members
+----------  ----------- ---------- ----------- ----- -------
+00000000    00000000    00000b88   00000b88    r-x
+  00000000    00000000    0000026c   0000026c    r-- .intvecs
+  0000026c    0000026c    000008ec   000008ec    r-x .text
+  00000b58    00000b58    00000030   00000030    r-- .cinit
+20000000    20000000    00000218   00000000    rw-
+  20000000    20000000    00000200   00000000    rw- .stack
+  20000200    20000200    00000014   00000000    rw- .data
+  20000214    20000214    00000004   00000000    rw- .bss
+
+
+SECTION ALLOCATION MAP
+
+ output                                  attributes/
+section   page    origin      length       input sections
+--------  ----  ----------  ----------   ----------------
+.intvecs   0    00000000    0000026c     
+                  00000000    0000026c     tm4c123gh6pm_startup_ccs.obj (.intvecs)
+
+.text      0    0000026c    000008ec     
+                  0000026c    00000738     main.obj (.text)
+                  000009a4    0000009c     rtsv7M4_T_le_v4SPD16_eabi.lib : memcpy_t2.asm.obj (.text)
+                  00000a40    00000068                                   : copy_decompress_lzss.c.obj (.text:decompress:lzss:__TI_decompress_lzss)
+                  00000aa8    00000044                                   : autoinit.c.obj (.text:__TI_auto_init_nobinit_nopinit:__TI_auto_init_nobinit_nopinit)
+                  00000aec    00000038                                   : boot_cortex_m.c.obj (.text:_c_int00_noargs:_c_int00_noargs)
+                  00000b24    00000012                                   : copy_zero_init.c.obj (.text:decompress:ZI:__TI_zero_init_nomemset:__TI_zero_init_nomemset)
+                  00000b36    0000000e                                   : copy_decompress_none.c.obj (.text:decompress:none:__TI_decompress_none)
+                  00000b44    0000000c     tm4c123gh6pm_startup_ccs.obj (.text)
+                  00000b50    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : pre_init.c.obj (.text:_system_pre_init)
+                  00000b54    00000004                                   : exit.c.obj (.text:abort:abort)
+
+.cinit     0    00000b58    00000030     
+                  00000b58    0000000c     (__TI_handler_table)
+                  00000b64    0000000b     (.cinit..data.load) [load image, compression = lzss]
+                  00000b6f    00000001     --HOLE-- [fill = 0]
+                  00000b70    00000008     (.cinit..bss.load) [load image, compression = zero_init]
+                  00000b78    00000010     (__TI_cinit_table)
+
+.init_array 
+*          0    00000000    00000000     UNINITIALIZED
+
+.data      0    20000200    00000014     UNINITIALIZED
+                  20000200    00000008     main.obj (.data:AnalogDir)
+                  20000208    00000008     main.obj (.data:AnalogEsq)
+                  20000210    00000004     main.obj (.data)
+
+.bss       0    20000214    00000004     UNINITIALIZED
+                  20000214    00000004     (.common:i)
+
+.stack     0    20000000    00000200     UNINITIALIZED
+                  20000000    00000004     rtsv7M4_T_le_v4SPD16_eabi.lib : boot_cortex_m.c.obj (.stack)
+                  20000004    000001fc     --HOLE--
+
+MODULE SUMMARY
+
+       Module                         code   ro data   rw data
+       ------                         ----   -------   -------
+    .\
+       main.obj                       1848   0         24     
+       tm4c123gh6pm_startup_ccs.obj   12     620       0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         1860   620       24     
+                                                              
+    C:\ti\ccsv8\tools\compiler\ti-cgt-arm_18.1.1.LTS\lib\rtsv7M4_T_le_v4SPD16_eabi.lib
+       memcpy_t2.asm.obj              156    0         0      
+       copy_decompress_lzss.c.obj     104    0         0      
+       autoinit.c.obj                 68     0         0      
+       boot_cortex_m.c.obj            56     0         0      
+       copy_zero_init.c.obj           18     0         0      
+       copy_decompress_none.c.obj     14     0         0      
+       exit.c.obj                     4      0         0      
+       pre_init.c.obj                 4      0         0      
+    +--+------------------------------+------+---------+---------+
+       Total:                         424    0         0      
+                                                              
+       Stack:                         0      0         512    
+       Linker Generated:              0      47        0      
+    +--+------------------------------+------+---------+---------+
+       Grand Total:                   2284   667       536    
+
+
+LINKER GENERATED COPY TABLES
+
+__TI_cinit_table @ 00000b78 records: 2, size/record: 8, table size: 16
+	.data: load addr=00000b64, load size=0000000b bytes, run addr=20000200, run size=00000014 bytes, compression=lzss
+	.bss: load addr=00000b70, load size=00000008 bytes, run addr=20000214, run size=00000004 bytes, compression=zero_init
+
+
+LINKER GENERATED HANDLER TABLE
+
+__TI_handler_table @ 00000b58 records: 3, size/record: 4, table size: 12
+	index: 0, handler: __TI_decompress_lzss
+	index: 1, handler: __TI_decompress_none
+	index: 2, handler: __TI_zero_init
+
+
+GLOBAL SYMBOLS: SORTED ALPHABETICALLY BY Name 
+
+address   name                          
+-------   ----                          
+20000200  AnalogDir                     
+20000208  AnalogEsq                     
+00000b55  C$$EXIT                       
+0000076b  InitADC                       
+0000027d  InitDigitals                  
+0000026d  InitSysTick                   
+00000419  InterruptPortA                
+000004e5  InterruptPortB                
+00000595  InterruptPortD                
+000006b9  InterruptPortE                
+00000735  InterruptPortF                
+00000b45  ResetISR                      
+000003a3  UART0_Init                    
+000003fd  UART0_OutChar                 
+20000200  __STACK_END                   
+00000200  __STACK_SIZE                  
+20000200  __STACK_TOP                   
+00000b78  __TI_CINIT_Base               
+00000b88  __TI_CINIT_Limit              
+00000b58  __TI_Handler_Table_Base       
+00000b64  __TI_Handler_Table_Limit      
+00000aa9  __TI_auto_init_nobinit_nopinit
+00000a41  __TI_decompress_lzss          
+00000b37  __TI_decompress_none          
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+00000000  __TI_static_base__            
+00000b25  __TI_zero_init_nomemset       
+000009a5  __aeabi_memcpy                
+000009a5  __aeabi_memcpy4               
+000009a5  __aeabi_memcpy8               
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+UNDEFED   __mpu_init                    
+20000000  __stack                       
+00000aed  _c_int00_noargs               
+UNDEFED   _system_post_cinit            
+00000b51  _system_pre_init              
+00000b55  abort                         
+ffffffff  binit                         
+00000000  g_pfnVectors                  
+20000214  i                             
+00000881  main                          
+000009a5  memcpy                        
+20000210  tempo                         
+000007f5  trataSystick                  
+
+
+GLOBAL SYMBOLS: SORTED BY Symbol Address 
+
+address   name                          
+-------   ----                          
+00000000  __TI_static_base__            
+00000000  g_pfnVectors                  
+00000200  __STACK_SIZE                  
+0000026d  InitSysTick                   
+0000027d  InitDigitals                  
+000003a3  UART0_Init                    
+000003fd  UART0_OutChar                 
+00000419  InterruptPortA                
+000004e5  InterruptPortB                
+00000595  InterruptPortD                
+000006b9  InterruptPortE                
+00000735  InterruptPortF                
+0000076b  InitADC                       
+000007f5  trataSystick                  
+00000881  main                          
+000009a5  __aeabi_memcpy                
+000009a5  __aeabi_memcpy4               
+000009a5  __aeabi_memcpy8               
+000009a5  memcpy                        
+00000a41  __TI_decompress_lzss          
+00000aa9  __TI_auto_init_nobinit_nopinit
+00000aed  _c_int00_noargs               
+00000b25  __TI_zero_init_nomemset       
+00000b37  __TI_decompress_none          
+00000b45  ResetISR                      
+00000b51  _system_pre_init              
+00000b55  C$$EXIT                       
+00000b55  abort                         
+00000b58  __TI_Handler_Table_Base       
+00000b64  __TI_Handler_Table_Limit      
+00000b78  __TI_CINIT_Base               
+00000b88  __TI_CINIT_Limit              
+20000000  __stack                       
+20000200  AnalogDir                     
+20000200  __STACK_END                   
+20000200  __STACK_TOP                   
+20000208  AnalogEsq                     
+20000210  tempo                         
+20000214  i                             
+ffffffff  __TI_pprof_out_hndl           
+ffffffff  __TI_prof_data_size           
+ffffffff  __TI_prof_data_start          
+ffffffff  __binit__                     
+ffffffff  __c_args__                    
+ffffffff  binit                         
+UNDEFED   __mpu_init                    
+UNDEFED   _system_post_cinit            
+
+[47 symbols]
